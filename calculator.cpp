@@ -100,93 +100,99 @@ void printQuadEQ(int a, int b, int c){
 
   } // end of function
 
+// void print(string text) {
+//   cout << "\n";
+//   cout << text;
+//   cout << "\n";
+// }
 
-float findYInt(int x, int y, int m){
+// string input(string question) {
+//   string userInput;
+//   cout << question;
+//   cin >> userInput;
+//   cout << "\n";
+//   return userInput;
+// }
 
-// Example Case:
-    // (2, 3) y= 6x+b > solve for b
-  
+float findYInt(int x, int y, int m) {
+  ofstream MyFile("outputfile.txt");
+
+  // Example Case:
+  // (2, 3) y= 6x+b > solve for b
+
   // find the y Intercept given an equation and a point
 
   // print formula
-  cout<< "y = mx + b";
-  cout<< "\n";
+  MyFile << "y = mx + b";
+  MyFile << "\n";
   // print formula with slope
-  cout<< "y = ";
-  cout<< m;
-  cout<< "x + b";
-  cout<< "\n";
+  MyFile << "y = ";
+  MyFile << m;
+  MyFile << "x + b";
+  MyFile << "\n";
 
   // insert (x, y) and print formula
-  
-  cout<< y;
-  cout<< " = ";
-  cout<< m;
-  cout<<"(";
-  cout<<x;
-  cout<<") + b";
-  cout<< "\n";
+
+  MyFile << y;
+  MyFile << " = ";
+  MyFile << m;
+  MyFile << "(";
+  MyFile << x;
+  MyFile << ") + b";
+  MyFile << "\n";
 
   // show m*x
-  
-  cout<< y;
-  cout<< " = ";
-  cout<< m * x;
-  cout<<" + b";
-  
+
+  MyFile << y;
+  MyFile << " = ";
+  MyFile << m * x;
+  MyFile << " + b";
 
   // Isolate b by moving mx to the other side
 
-
   // perform inverse operation
-  cout<<"\n";
-  if (m*x > 0){
-    cout<< "-";
-    cout<< m*x;
-    cout<<"  ";
-    cout<< " -";
-    cout<< m*x;
-    cout<< "\n";
+  MyFile << "\n";
+  if (m * x > 0) {
+    MyFile << "-";
+    MyFile << m * x;
+    MyFile << "  ";
+    MyFile << " -";
+    MyFile << m * x;
+    MyFile << "\n";
+  } else if (m * x < 0) {
+    MyFile << " +";
+    MyFile << m * x * -1;
+    MyFile << "  ";
+    MyFile << " +";
+    MyFile << m * x * -1;
+    MyFile << "\n";
   }
-  else if (m*x < 0){
-    cout<< " +";
-    cout<< m*x*-1;
-    cout<<"  ";
-    cout<< " +";
-    cout<< m*x*-1;
-    cout<<"\n";
-  }
-
 
   // print EQ with b isolated
-  cout<< y;
-  
-  if (m*x > 0){
-    cout<< "-";
-    cout<< m*x;
-    }
-  else if (m*x < 0){
-    cout<< " +";
-    cout<< m*x*-1;
-    }
-  cout<< " = b";
-  cout<<"\n";
+  MyFile << y;
 
+  if (m * x > 0) {
+    MyFile << "-";
+    MyFile << m * x;
+  } else if (m * x < 0) {
+    MyFile << " +";
+    MyFile << m * x * -1;
+  }
+  MyFile << " = b";
+  MyFile << "\n";
 
   // simplify
-  float b = y - m*x;
-
+  float b = y - m * x;
 
   // print y int
-  cout<< "Your y intercept is "; 
-  cout<< b;
+  MyFile << "Your y intercept is ";
+  MyFile << b;
+  // Close the file
+  MyFile.close();
   // return
   return b;
-   
-  
+
 } // end find y int function
-
-
 
 
 // Put main last that way everything is defined before hand
@@ -197,7 +203,9 @@ int main() {
    int x = string_conversion(input("X= "));
    int y = string_conversion(input("Y= "));
    int m = string_conversion(input("M= "));
-  findYInt(x, y, m);
+  float b = findYInt(x, y, m);
+
+ 
 //   findYInt(2, 3, 5);
 //   
 //   cout << "Hello World!";
